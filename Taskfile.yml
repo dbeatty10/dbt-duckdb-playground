@@ -8,7 +8,7 @@ tasks:
         - poetry run sqlfluff fix playground/models/ --dialect sqlite
     populate:
       cmds:
-        - python populate.py
+        - poetry run python populate.py
     dbt-run:
       deps: [populate]
       dir: playground
