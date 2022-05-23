@@ -1,19 +1,17 @@
-# Silly dbt-sqlite playground
+# Silly dbt-duckdb playground
 
-Last week I was taking the free [dbt Fundamentals course](https://courses.getdbt.com/courses/fundamentals) offered by `dbt labs`, and the only options to take it "easily" are using cloud data warehouses, or starting a Postgres/MySQL/some-db container or application locally. I didn't want the hassle, or more like, I wanted to configure the `dbt` parts in the easiest way possible.
+This is a port of Rubén Berenguel's [dbt-sqlite-playground](https://github.com/rberenguel/dbt-sqlite-playground) to DuckDB.
 
-Luckily there is [dbt-sqlite](https://github.com/codeforkjeff/dbt-sqlite).
-
-Sadly, for a lot of `dbt` things you can't really use `sqlite`, `¯\_(ツ)_/¯`
 
 ---
 
-All commands are defined in a [taskfile](https://taskfile.dev) to make my life easier.
 
 ## What is available here
 
-- Technically, a [Poetry](http://python-poetry.org) project, containing helper tools (including `dbt` via `dbt-sqlite`);
-- A small (and somewhat dirty) Python script (`populate.py`) to place some not-very-fancy data in a Sqlite file. It will always delete it on load;
+All commands are defined in a [taskfile](https://taskfile.dev) to make life easier.
+
+- Technically, a [Poetry](http://python-poetry.org) project, containing helper tools (including `dbt` via `dbt-duckdb`);
+- A small (and somewhat dirty) Python script (`populate.py`) to place some not-very-fancy data in a DuckDB file. It will always delete it on load;
 - A `dbt` project with sources (based on this pre-populated data) and models. Includes some tests, too.
 
 ## Playing with this

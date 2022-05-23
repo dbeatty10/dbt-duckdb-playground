@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9.9"
-dbt-sqlite = "^1.1.0"
+dbt-duckdb = "^1.1.0"
 colorlog = "^6.6.0"
 
 [tool.poetry.dev-dependencies]

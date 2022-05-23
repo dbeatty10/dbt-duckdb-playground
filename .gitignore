@@ -1,7 +1,7 @@
 .python-version
 .DS_Store
 playground/target/
-playground.sqlite3
+playground.duckdb
 .vscode/
 playground/logs/
 logs/

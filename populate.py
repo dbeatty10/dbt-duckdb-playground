@@ -1,9 +1,7 @@
-import sqlite3
+import duckdb
 import os
 import logging
 import random
-
-from sqlite3 import Cursor
 
 from colorlog import ColoredFormatter
 
@@ -30,7 +28,7 @@ def configure_logger():
     logger.addHandler(handler)
 
 
-PLAYGROUND = "playground.sqlite3"
+PLAYGROUND = "playground.duckdb"
 PRODUCTS = {
     "potato": 12,
     "book": 42,
@@ -46,7 +44,7 @@ def clean():
         logger.info("No database to purge")
 
 
-def add_products(cursor: Cursor):
+def add_products(cursor):
 
     cursor.execute("""CREATE TABLE products (id int, name text, price int)""")
     logger.info("Products table created")
@@ -57,7 +55,7 @@ def add_products(cursor: Cursor):
     logger.info("Products table populated")
 
 
-def generate_orders_and_invoices(cursor: Cursor):
+def generate_orders_and_invoices(cursor):
     cursor.execute("""CREATE TABLE orders (id int, product_id int, qty int)""")
     logger.info("Orders table created")
     cursor.execute("""CREATE TABLE invoices (id int, order_id int, status text)""")
@@ -90,8 +88,9 @@ if __name__ == "__main__":
     configure_logger()
     logger.setLevel(logging.INFO)
     clean()
-    connection = sqlite3.connect(PLAYGROUND)
-    cursor: Cursor = connection.cursor()
+    connection = duckdb.connect(PLAYGROUND)
+    cursor = connection.cursor()
+
     add_products(cursor)
     connection.commit()
     generate_orders_and_invoices(cursor)

@@ -2,10 +2,10 @@ version: '3'
 tasks:
     sql-lint:
       cmds:
-        - poetry run sqlfluff lint playground/models/ --dialect sqlite
+        - poetry run sqlfluff lint playground/models/
     sql-fix:
       cmds:
-        - poetry run sqlfluff fix playground/models/ --dialect sqlite
+        - poetry run sqlfluff fix playground/models/
     populate:
       cmds:
         - poetry run python populate.py
@@ -27,4 +27,4 @@ tasks:
     check-total:
       deps: [dbt-run]
       cmds:
-        - sqlite3 playground.sqlite3 "select * from fct_paid_income;" ".exit"
+        - poetry run python check_total.py
